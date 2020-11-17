@@ -2,7 +2,9 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+//import Dino from './js/promiseClass.js';
 //import DinoClass from './js/dinoClass.js';
+import Dino from './js/promiseClass.js';
 
 $('#dinoform').submit(function () {
   event.preventDefault();
@@ -10,12 +12,12 @@ $('#dinoform').submit(function () {
   $('#1').val('');
   const words = $('#2').val();
   $('#2').val('');
-
+  let promise = Dino.getDino(paragraphs, words);
   //DinoClass(paragraphs, words);
-  let promise = new Promise(function(resolve, reject){
-    let request = new XMLHttpRequest();
-    const url = `http://dinoipsum.herokuapp.com/ap/?format=json&paragraphs=${paragraphs}&words=${words}`;
-    request.onload = function(){
+    //let promise = new Promise(function(resolve, reject){
+    //let request = new XMLHttpRequest();
+    //const url = `http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=${paragraphs}&words=${words}`;
+    /*request.onload = function(){
       if (this.status == 200) {
         resolve(request.response);
       } else {
@@ -24,7 +26,7 @@ $('#dinoform').submit(function () {
     };
     request.open("GET", url, true);
     request.send();
-  });
+    */
   promise.then(function(resolvedResponse) {
     const body = JSON.parse(resolvedResponse);
     for (let i = 0; i < body.length; i ++) {
