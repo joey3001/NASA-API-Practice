@@ -14,23 +14,25 @@ $('#dinoform').submit(function () {
   //DinoClass(paragraphs, words);
   let promise = new Promise(function(resolve, reject){
     let request = new XMLHttpRequest();
-    const url = `http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=${paragraphs}&words=${words}`;
+    const url = `http://dinoipsum.herokuapp.com/ap/?format=json&paragraphs=${paragraphs}&words=${words}`;
     request.onload = function(){
       if (this.status == 200) {
         resolve(request.response);
       } else {
         reject(request.response);
       }
-    }
+    };
     request.open("GET", url, true);
     request.send();
   });
- 
-  promise.then(function(response) {
-    const body = JSON.parse(response);
-    for (let i = 0; i < body.length; i ++){
+  promise.then(function(resolvedResponse) {
+    const body = JSON.parse(resolvedResponse);
+    for (let i = 0; i < body.length; i ++) {
       $('.displaydiv').append('<p>' + body[i] + '</p>');
-    }
+    } 
+  }, function(rejectedResponse) {
+      console.log('rejected');
+      console.log(rejectedResponse);
   });
 });
 /*export default function getElements(response) {
