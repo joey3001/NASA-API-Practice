@@ -30,4 +30,5 @@ export default function getElements(response) {
   for (let i = 0; i < response.length; i++) {
     $('.displaydiv').append('<p>' + response[i] + '</p>');
   }
+  console.log(response);
 }
