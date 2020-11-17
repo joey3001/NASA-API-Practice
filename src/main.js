@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 //import Dino from './js/promiseClass.js';
 //import DinoClass from './js/dinoClass.js';
-import Dino from './js/promiseClass.js';
+//import Dino from './js/promiseClass.js';
+import getDino from './js/promiseClass.js'
 
 $('#dinoform').submit(function () {
   event.preventDefault();
@@ -12,7 +13,7 @@ $('#dinoform').submit(function () {
   $('#1').val('');
   const words = $('#2').val();
   $('#2').val('');
-  let promise = Dino.getDino(paragraphs, words);
+  let promise = getDino(paragraphs, words);
   //DinoClass(paragraphs, words);
     //let promise = new Promise(function(resolve, reject){
     //let request = new XMLHttpRequest();
