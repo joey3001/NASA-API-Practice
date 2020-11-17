@@ -35,6 +35,7 @@ $('#dinoform').submit(function () {
   }, function(rejectedResponse) {
       console.log('rejected');
       console.log(rejectedResponse);
+      console.log('hi');
   });
 });
 /*export default function getElements(response) {
