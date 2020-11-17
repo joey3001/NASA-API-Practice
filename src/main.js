@@ -5,7 +5,7 @@ import './css/styles.css';
 //import Dino from './js/promiseClass.js';
 //import DinoClass from './js/dinoClass.js';
 //import Dino from './js/promiseClass.js';
-import getDino from './js/promiseClass.js'
+import DinoWeather from './js/promiseClass.js'
 
 $('#dinoform').submit(function () {
   event.preventDefault();
@@ -13,7 +13,9 @@ $('#dinoform').submit(function () {
   $('#1').val('');
   const words = $('#2').val();
   $('#2').val('');
-  let promise = getDino(paragraphs, words);
+  const city = $('#3').val();
+  let promise = DinoWeather.getDino(paragraphs, words);
+  let promise2 = DinoWeather.getWeather(city);
   //DinoClass(paragraphs, words);
     //let promise = new Promise(function(resolve, reject){
     //let request = new XMLHttpRequest();
@@ -34,6 +36,15 @@ $('#dinoform').submit(function () {
       $('.displaydiv').append('<p>' + body[i] + '</p>');
     } 
   }, function(rejectedResponse) {
+      console.log('rejected');
+      console.log(rejectedResponse);
+      console.log('hi');
+  });
+
+  promise2.then(function(resolvedResponse) {
+    const body = JSON.parse(resolvedResponse);
+    $('.showTemp').text(`The temperature in Kelvins is ${body.main.temp} degrees`);
+    } , function(rejectedResponse) {
       console.log('rejected');
       console.log(rejectedResponse);
       console.log('hi');
