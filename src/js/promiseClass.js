@@ -1,8 +1,8 @@
 export default class NasaAPI {
-  static getEpic() {
+  static getEpic(date) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://api.nasa.gov/EPIC/api/enhanced/date/2015-10-31?api_key=Jvd2fxxfc6Fc8u43oshUShji42Vd7y2eM50MMx3L`;
+      const url = `https://api.nasa.gov/EPIC/api/enhanced/date/${date}?api_key=Jvd2fxxfc6Fc8u43oshUShji42Vd7y2eM50MMx3L`;
   
       request.onload = function() {
         if (this.status === 200) {
