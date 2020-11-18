@@ -2,20 +2,19 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import NasaAPI from './js/promiseClass.js';
+//import NasaAPI from './js/promiseClass.js';
+import fetchService from './js/fetch.js';
+//import { transformFromAstSync } from '@babel/core';
 
 //$(document).ready(function () {
 $('#apiform').submit(function () {
   event.preventDefault(); 
   let input = $('#date').val();
-  console.log(input)
-  let promise = NasaAPI.getEpic(input);
+  /*let promise = NasaAPI.getEpic(input);
   promise.then(function(resolvedResponse) {
     const body = JSON.parse(resolvedResponse); 
     let array = body[0].date.split("-");
     array[2] = array[2].split(" ");
-    console.log(array);
-    console.log(array[2][0]);
     let image = `https://epic.gsfc.nasa.gov/archive/enhanced/${array[0]}/${array[1]}/${array[2][0]}/png/${body[0].image}.png`
     $('.output').append('<img src ="' + image + '"</img>');
   },  
@@ -23,8 +22,25 @@ $('#apiform').submit(function () {
     console.log('rejected'); 
     console.log(rejectedResponse);  
     console.log('hi');
-  });
+  });*/
+  function getElements(response) {
+    console.log(response);
+    if (response) {
+      let array = response[1].date.split("-")
+      array[2] = array[2].split(" ");
+      let image = `https://epic.gsfc.nasa.gov/archive/enhanced/${array[0]}/${array[1]}/${array[2][0]}/png/${response[0].image}.png`
+      $('.output').append('<img src ="' + image + '"</img>');
+    } else {
+      $('.output').text('There was an error.')
+    }
+  }
+  async function makeApiCall(date) {
+    const response = await fetchService.showPicture(date);
+    getElements(response);
+  }
+  makeApiCall(input);
 });
+
 //});
  
 //code graveyard  
