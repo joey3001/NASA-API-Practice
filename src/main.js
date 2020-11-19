@@ -2,17 +2,16 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import fetchService from './js/fetch.js';
+//import BusinessLogic from './js/businessLogic.js';
+//import { transformFromAstSync } from '@babel/core';
 //import NasaAPI from './js/promiseClass.js';
 //import fetchService from './js/fetch.js';
-import BusinessLogic from './js/businessLogic.js';
-//import { transformFromAstSync } from '@babel/core';
 
-
-//$(document).ready(function () {
 $('#apiform').submit(function () {
   event.preventDefault(); 
   let input = $('#date').val();
-  BusinessLogic.makeApiCall(input);
+  fetchService.makeApiCall(input);
 });
 
 
